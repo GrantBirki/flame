@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# exit on error
+set -e
+
+# get the directory of this script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+
+# get the repo directory
+REPO_DIR=$(git rev-parse --show-toplevel)
+cd $REPO_DIR
+
+# run git pull and if there are changes, restart the server
+pull_result=$(git pull)
+if [[ $pull_result == *"Already up to date."* ]]; then
+    echo "No changes to pull"
+else
+    echo "Changes pulled, restarting server"
+    sudo make run
+fi
