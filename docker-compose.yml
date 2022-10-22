@@ -1,6 +1,6 @@
 services:
   flame:
-    image: pawelmalak/flame:multiarch2.2.2 # next use 2.3.0
+    image: pawelmalak/flame:multiarch2.3.0
     container_name: flame
     volumes:
       - /path/to/host/data:/app/data
